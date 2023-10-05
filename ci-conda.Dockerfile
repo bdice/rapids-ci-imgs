@@ -75,7 +75,7 @@ RUN wget https://github.com/rapidsai/gha-tools/releases/latest/download/tools.ta
 # Install CI tools using mamba
 RUN rapids-mamba-retry install -y \
     anaconda-client \
-    awscli \
+    "awscli<1.29.59" \
     boa \
     gettext \
     gh \
