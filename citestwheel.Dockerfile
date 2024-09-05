@@ -71,12 +71,12 @@ EOF
 RUN curl https://pyenv.run | bash
 
 # Create pyenvs
-RUN pyenv update && pyenv install ${PYTHON_VER}
+RUN pyenv update && pyenv install ${RAPIDS_PY_VERSION}
 
-RUN pyenv global ${PYTHON_VER} && python --version
+RUN pyenv global ${RAPIDS_PY_VERSION} && python --version
 
 # add bin to path
-ENV PATH="/pyenv/versions/${PYTHON_VER}/bin/:$PATH"
+ENV PATH="/pyenv/versions/${RAPIDS_PY_VERSION}/bin/:$PATH"
 
 # Install the AWS CLI
 # Needed to download wheels for running tests
@@ -85,7 +85,7 @@ COPY --from=aws-cli /usr/local/bin/ /usr/local/bin/
 
 # update pip and install build tools
 RUN <<EOF
-pyenv global ${PYTHON_VER}
+pyenv global ${RAPIDS_PY_VERSION}
 python -m pip install --upgrade pip
 python -m pip install "rapids-dependency-file-generator==1.*"
 pyenv rehash

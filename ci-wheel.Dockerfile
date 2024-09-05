@@ -129,7 +129,7 @@ esac
 EOF
 
 RUN <<EOF
-pyenv global ${PYTHON_VER}
+pyenv global ${RAPIDS_PY_VERSION}
 python -m pip install --upgrade pip
 python -m pip install auditwheel patchelf twine "rapids-dependency-file-generator==1.*" dunamai
 pyenv rehash
